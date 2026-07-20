@@ -1,0 +1,160 @@
+table gold_dim_customer
+	lineageTag: 27337724-2554-4142-b428-a77e7940853f
+	sourceLineageTag: [dbo].[gold_dim_customer]
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9dea0fbe-ca8a-46ca-974c-1c65440e71f2
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: 1a4fe456-ef16-422e-beb6-8ac61e00e085
+		sourceLineageTag: first_name
+		summarizeBy: none
+		sourceColumn: first_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: 7b4e4bfd-7ab4-4f7d-9edb-82b1c85bcf6a
+		sourceLineageTag: last_name
+		summarizeBy: none
+		sourceColumn: last_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 4688d226-7c0d-429c-86a3-708dd4421c5f
+		sourceLineageTag: email
+		summarizeBy: none
+		sourceColumn: email
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 9a8abef9-e068-4fcc-a720-eb63a5c63fde
+		sourceLineageTag: phone
+		summarizeBy: none
+		sourceColumn: phone
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: bf36b585-b52c-47bc-9d31-e55776739fbc
+		sourceLineageTag: city
+		summarizeBy: none
+		sourceColumn: city
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column province
+		dataType: string
+		lineageTag: 3dedb488-afd3-4ada-a4b4-a6e2ef548756
+		sourceLineageTag: province
+		summarizeBy: none
+		sourceColumn: province
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: bdf91f3b-6e03-4926-a3ed-69b56d59cdfc
+		sourceLineageTag: country
+		summarizeBy: none
+		sourceColumn: country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 29e69264-e98c-46fa-9e4e-49dab0b8a20a
+		sourceLineageTag: created_timestamp
+		summarizeBy: none
+		sourceColumn: created_timestamp
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 24196014-2ba0-48ab-90dd-20ef3e8fa2d6
+		sourceLineageTag: updated_timestamp
+		summarizeBy: none
+		sourceColumn: updated_timestamp
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: string
+		lineageTag: 83e86802-ff67-4a19-afdf-87666f4ba537
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column processed_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2cb74cc8-3149-425e-b388-4b9de201750c
+		sourceLineageTag: processed_timestamp
+		summarizeBy: none
+		sourceColumn: processed_timestamp
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_id
+		dataType: string
+		lineageTag: 93f328da-7c6f-4093-abdb-de036cd2fbb1
+		sourceLineageTag: batch_id
+		summarizeBy: none
+		sourceColumn: batch_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_dim_customer = entity
+		mode: directLake
+		source
+			entityName: gold_dim_customer
+			schemaName: dbo
+			expressionSource: 'DirectLake - walmart_project_Lakehouse'
+
+	changedProperty = IsHidden
+

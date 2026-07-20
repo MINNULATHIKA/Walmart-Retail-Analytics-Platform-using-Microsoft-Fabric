@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Walmart_Sales_Semantic_Model"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7fd0eaa8-2261-94f4-4f3f-d23db76adb7f"
+  }
+}

@@ -1,0 +1,259 @@
+table gold_fact_sales
+	lineageTag: d5c89358-46ce-4bfa-89ba-e738355ffbb0
+	sourceLineageTag: [dbo].[gold_fact_sales]
+
+	measure Total_sales = SUM(gold_fact_sales[line_amount])
+		lineageTag: 2a3c1173-2de1-4b1d-9258-5e885a3fe26e
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_Order = COUNT(gold_fact_sales[order_id])
+		formatString: 0
+		lineageTag: ec7e83f5-e91d-46e1-91d5-d8980ebf25f2
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure Total_Quantity =
+			
+			SUM(gold_fact_sales[quantity])
+		formatString: 0
+		lineageTag: f20763ba-eaa9-4960-9ee5-0e2bd534ee57
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure Average_Order_value = ```
+			DIVIDE([Total_sales],[Total_Order]) 
+			```
+		lineageTag: c6bcddd6-d2d4-45a2-b088-a11d43196fe8
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Historical Sales' =
+			
+			CALCULATE(
+			    [Total_Sales],
+			    gold_fact_sales[data_source] = "Historical"
+			)
+		lineageTag: bcd781dd-a0aa-4206-977b-32ec2b0c64c2
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Real-Time Sales' =
+			
+			CALCULATE(
+			    [Total_Sales],
+			    gold_fact_sales[data_source] = "Real-Time"
+			)
+		lineageTag: 5ac6ab37-1995-45d7-ba19-6b9810ab2ee5
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Difference' =
+			
+			[Real-Time Sales] - [Historical Sales]
+		lineageTag: 77cb5154-d874-4be5-8ca7-727c4acb39d3
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Growth %' =
+			
+			DIVIDE(
+			    [Sales Difference],
+			    [Historical Sales]
+			)
+		lineageTag: 3a79d0ca-056d-4217-a130-36212bf50e5c
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_item_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3dcefc19-5a16-427b-b5a9-e75301ee90ae
+		sourceLineageTag: order_item_id
+		summarizeBy: sum
+		sourceColumn: order_item_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 99c4cae0-632c-42a9-b073-09bac4621411
+		sourceLineageTag: order_id
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 896cc13c-6a20-4543-b61d-f921bbbafb68
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a4a9d37e-8be7-40a6-b010-a8a75ee5d3d4
+		sourceLineageTag: store_id
+		summarizeBy: none
+		sourceColumn: store_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 37e4740f-62c7-404b-a30f-10b1cd17219a
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6af05dc9-7792-4872-a276-e44bee97879a
+		sourceLineageTag: order_date
+		summarizeBy: none
+		sourceColumn: order_date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a1e0d5b-9350-4373-97e0-065838eb7652
+		sourceLineageTag: quantity
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: double
+		lineageTag: 02bc6bed-5c7e-4995-9570-48175f052cd6
+		sourceLineageTag: unit_price
+		summarizeBy: sum
+		sourceColumn: unit_price
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column line_amount
+		dataType: double
+		lineageTag: a18c2c7e-68df-460a-9724-ef67d8483755
+		sourceLineageTag: line_amount
+		summarizeBy: sum
+		sourceColumn: line_amount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_method
+		dataType: string
+		lineageTag: a0802a98-a6df-45bf-89f4-48217fa868a5
+		sourceLineageTag: payment_method
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		lineageTag: b650a1a6-49f4-4473-a927-b8cabd57e356
+		sourceLineageTag: order_status
+		summarizeBy: none
+		sourceColumn: order_status
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_source
+		dataType: string
+		lineageTag: a7044045-278f-44f7-a7c7-1bd1299cb988
+		sourceLineageTag: data_source
+		summarizeBy: none
+		sourceColumn: data_source
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b6b63f1-9c13-45ca-9fc9-dd3c9b8a2367
+		sourceLineageTag: date_key
+		summarizeBy: none
+		sourceColumn: date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_fact_sales = entity
+		mode: directLake
+		source
+			entityName: gold_fact_sales
+			schemaName: dbo
+			expressionSource: 'DirectLake - walmart_project_Lakehouse'
+
+	changedProperty = IsHidden
+

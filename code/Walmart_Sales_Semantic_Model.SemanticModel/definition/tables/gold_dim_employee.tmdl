@@ -1,0 +1,126 @@
+table gold_dim_employee
+	lineageTag: bc47b9a7-76a7-4b18-8f3e-5e64c3495b24
+	sourceLineageTag: [dbo].[gold_dim_employee]
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 698ec80a-bf54-4fff-946a-e1bbae6476ee
+		sourceLineageTag: store_id
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_id
+		dataType: int64
+		formatString: 0
+		lineageTag: eb842d5e-3e2a-4bdd-9656-00292d040dd9
+		sourceLineageTag: employee_id
+		summarizeBy: none
+		sourceColumn: employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: 2ed5ff48-9138-4e9b-a1ff-a3735e6db0ff
+		sourceLineageTag: first_name
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: 1bb11e69-dd3c-4e8d-91c2-9d7d1604d6bc
+		sourceLineageTag: last_name
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: df3151f8-43c2-4714-b7d0-928e9f5c15c7
+		sourceLineageTag: email
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_title
+		dataType: string
+		lineageTag: 2c357e61-e26f-48b3-832f-1bdcae8ee80e
+		sourceLineageTag: job_title
+		summarizeBy: none
+		sourceColumn: job_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column salary
+		dataType: double
+		lineageTag: 70f4672d-1710-46d1-ba88-cbac1867a660
+		sourceLineageTag: salary
+		summarizeBy: none
+		sourceColumn: salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column created_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d400276f-234b-4961-b26e-09045f877af3
+		sourceLineageTag: created_timestamp
+		summarizeBy: none
+		sourceColumn: created_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4a63f9eb-e2ac-4c47-bcf9-b328b0555232
+		sourceLineageTag: updated_timestamp
+		summarizeBy: none
+		sourceColumn: updated_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: string
+		lineageTag: 095e5780-db06-47f1-b6d8-75894181c3c9
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column processed_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9ee17769-bf70-439f-9456-2389fe3221e2
+		sourceLineageTag: processed_timestamp
+		summarizeBy: none
+		sourceColumn: processed_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_id
+		dataType: string
+		lineageTag: 26bff04b-0596-41b2-8191-17c7d3516905
+		sourceLineageTag: batch_id
+		summarizeBy: none
+		sourceColumn: batch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_dim_employee = entity
+		mode: directLake
+		source
+			entityName: gold_dim_employee
+			schemaName: dbo
+			expressionSource: 'DirectLake - walmart_project_Lakehouse'
+

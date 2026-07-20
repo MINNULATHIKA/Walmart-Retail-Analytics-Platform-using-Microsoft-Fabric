@@ -1,0 +1,243 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "script",
+                "fileName": "git.json"
+              }
+            },
+            "schema": {},
+            "linkedService": {
+              "name": "walmart_project_Lakehouse",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "cadbea4e-ff82-8ec2-40c1-fa4c22abdf99",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "File Names Look up",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@activity('File Names Look up').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "DelimitedTextSource",
+                  "formatSettings": {
+                    "type": "DelimitedTextReadSettings"
+                  },
+                  "storeSettings": {
+                    "type": "HttpReadSettings",
+                    "requestMethod": "GET"
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "HttpServerLocation",
+                        "relativeUrl": {
+                          "value": "@item().p_rel_url",
+                          "type": "Expression"
+                        }
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "a4c9957d-f171-470c-8f3a-81fee9505085"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "DelimitedTextSink",
+                  "formatSettings": {
+                    "type": "DelimitedTextWriteSettings",
+                    "fileExtension": ".txt"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseWriteSettings"
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": {
+                          "value": "RawData/RawData@{item().p_sink_folder}",
+                          "type": "Expression"
+                        },
+                        "fileName": {
+                          "value": "@item().p_sink_file",
+                          "type": "Expression"
+                        }
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "walmart_project_Lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "cadbea4e-ff82-8ec2-40c1-fa4c22abdf99",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data1",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach1",
+        "dependsOn": [
+          {
+            "activity": "File Names Look up",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "2134cc0f-4ad2-8274-4966-8ec766d6f7ee",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Bronze_Data_Load_Notebook",
+        "dependsOn": [
+          {
+            "activity": "ForEach1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "1bfd9d2c-222d-b283-40c7-493c1ef632d5",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "silver_Data_Load_Notebook",
+        "dependsOn": [
+          {
+            "activity": "Bronze_Data_Load_Notebook",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "f0001163-3253-92bf-42e4-1f627a36afec",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Gold_Data_Load_Notebook",
+        "dependsOn": [
+          {
+            "activity": "silver_Data_Load_Notebook",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

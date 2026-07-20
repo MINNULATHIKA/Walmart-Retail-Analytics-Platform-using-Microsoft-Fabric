@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "05_Stream_Gold_Layer_Data_Load"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7160f61e-8500-8721-4646-d2d31b655953"
+  }
+}

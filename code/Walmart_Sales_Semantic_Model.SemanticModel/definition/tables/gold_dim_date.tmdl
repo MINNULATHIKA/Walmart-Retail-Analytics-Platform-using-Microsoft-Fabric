@@ -1,0 +1,89 @@
+table gold_dim_date
+	lineageTag: 82a168f8-3011-4b29-bdd3-1d4c2572fea0
+	sourceLineageTag: [dbo].[gold_dim_date]
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4ce9d838-6c46-4630-a3ea-cfc38736c5c0
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f05e186-2461-4ef6-a1db-2e5f2d3395be
+		sourceLineageTag: year
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bd71e7d-9801-42a9-b1c3-9c9c41d26837
+		sourceLineageTag: quarter
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: ee4c3611-5925-4db6-8fe0-fe52b2d205c9
+		sourceLineageTag: month
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 65af1b83-a6c7-47b7-920e-1e8f36d46a38
+		sourceLineageTag: month_name
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e14906a-971e-4ea7-8a2f-fb835676de04
+		sourceLineageTag: day
+		summarizeBy: none
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: 33c49848-af48-4666-b3e5-b934d72e191a
+		sourceLineageTag: day_name
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 16dfdb5d-190c-4b89-88e0-b06acd292ab2
+		sourceLineageTag: date_key
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_dim_date = entity
+		mode: directLake
+		source
+			entityName: gold_dim_date
+			schemaName: dbo
+			expressionSource: 'DirectLake - walmart_project_Lakehouse'
+
