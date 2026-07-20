@@ -1,0 +1,57 @@
+{
+  "sources": [
+    {
+      "id": "655404cc-6c13-4607-aaec-491a7ed73393",
+      "name": "real-time-order-source",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "e12e7e0f-d400-42ba-895f-19bb3c5e4ccb",
+      "name": "Lakehouse",
+      "type": "Lakehouse",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "cadbea4e-ff82-8ec2-40c1-fa4c22abdf99",
+        "schema": "dbo",
+        "deltaTable": "bronze_real_time_orders",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "walmart-real-time-orders-eventstream-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "walmart-real-time-orders-eventstream-stream",
+          "schema": {
+            "columns": []
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "ecc3e340-7a36-40df-b54b-7659b6136edc",
+      "name": "walmart-real-time-orders-eventstream-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "real-time-order-source"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

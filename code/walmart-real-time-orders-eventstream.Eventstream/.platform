@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "walmart-real-time-orders-eventstream"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e2584437-c6b5-ba56-468d-42b9817f130b"
+  }
+}
