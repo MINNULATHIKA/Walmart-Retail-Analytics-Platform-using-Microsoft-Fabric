@@ -1,0 +1,107 @@
+table gold_dim_product
+	lineageTag: 0ce1c371-0106-4ba0-b7e0-40ce9caa01f8
+	sourceLineageTag: [dbo].[gold_dim_product]
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c18a7e9-96a4-4bb8-a650-1ede02229cf1
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: ff9788e3-5272-4bac-9735-ee7761050747
+		sourceLineageTag: product_name
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 9927d768-15dc-45c4-a9a1-f0b87713c3a2
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: c811234d-d5ef-4a1d-938c-9a1dac7609ab
+		sourceLineageTag: brand
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: f6f2f104-af2c-47fc-8da2-f6bbf8be3195
+		sourceLineageTag: price
+		summarizeBy: none
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column created_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1e860fe2-bece-4f8d-9184-5189bcfaa19d
+		sourceLineageTag: created_timestamp
+		summarizeBy: none
+		sourceColumn: created_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: abec3152-74c8-4d9b-989c-3d4ada5fa92a
+		sourceLineageTag: updated_timestamp
+		summarizeBy: none
+		sourceColumn: updated_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: string
+		lineageTag: d892403d-93c5-473b-a341-bdee728a641e
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column processed_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b4c35b8a-4e50-4d72-903a-8b8163a368a0
+		sourceLineageTag: processed_timestamp
+		summarizeBy: none
+		sourceColumn: processed_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_id
+		dataType: string
+		lineageTag: 38ec9d3d-186d-4a2d-962c-9bf3326fbb20
+		sourceLineageTag: batch_id
+		summarizeBy: none
+		sourceColumn: batch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_dim_product = entity
+		mode: directLake
+		source
+			entityName: gold_dim_product
+			schemaName: dbo
+			expressionSource: 'DirectLake - walmart_project_Lakehouse'
+

@@ -1,0 +1,105 @@
+table gold_dim_store
+	lineageTag: c74525a6-d8bd-4bab-8e18-0dd840378f6b
+	sourceLineageTag: [dbo].[gold_dim_store]
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5848bb35-8ecc-4c23-8fd0-82e2e22871c7
+		sourceLineageTag: store_id
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_name
+		dataType: string
+		lineageTag: 42dbf247-38db-4c5c-a214-227903661ce5
+		sourceLineageTag: store_name
+		summarizeBy: none
+		sourceColumn: store_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: c85958b3-54ed-42ba-bc69-f6d08970bf7d
+		sourceLineageTag: city
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column province
+		dataType: string
+		lineageTag: fb285d07-2f5d-4913-a646-84bca9cd246c
+		sourceLineageTag: province
+		summarizeBy: none
+		sourceColumn: province
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 784bbd9f-1575-4a48-9244-128505c16987
+		sourceLineageTag: country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b41512b1-76c1-4930-8ac7-dabe20128245
+		sourceLineageTag: created_timestamp
+		summarizeBy: none
+		sourceColumn: created_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d25e9b59-4730-4967-b7c1-9b7accd055e3
+		sourceLineageTag: updated_timestamp
+		summarizeBy: none
+		sourceColumn: updated_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: string
+		lineageTag: 43b30871-407c-444a-aec9-d7951ed7e5d7
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column processed_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ee85c9c6-46c3-4f7f-9046-e1c8d12a6a2e
+		sourceLineageTag: processed_timestamp
+		summarizeBy: none
+		sourceColumn: processed_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_id
+		dataType: string
+		lineageTag: 2f68fa8c-f492-4756-aa10-b786438c6b0f
+		sourceLineageTag: batch_id
+		summarizeBy: none
+		sourceColumn: batch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_dim_store = entity
+		mode: directLake
+		source
+			entityName: gold_dim_store
+			schemaName: dbo
+			expressionSource: 'DirectLake - walmart_project_Lakehouse'
+

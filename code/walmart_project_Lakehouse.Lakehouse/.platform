@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "walmart_project_Lakehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cadbea4e-ff82-8ec2-40c1-fa4c22abdf99"
+  }
+}
