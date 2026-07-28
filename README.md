@@ -33,6 +33,9 @@ Streaming:  Fake Order Generator  ->  Fabric Eventstream  ->  Lakehouse Streamin
 ```
 
 ---
+# Architectural Diagram
+
+<img width="860" height="1454" alt="image" src="https://github.com/user-attachments/assets/221d2bfb-96d0-480d-a08f-ad279caa0ef1" />
 
 ## Datasets
 
